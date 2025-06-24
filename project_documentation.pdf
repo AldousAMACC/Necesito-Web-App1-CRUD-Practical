@@ -1,0 +1,55 @@
+Project Documentation - Feedback Board for a Local Business
+
+1. Project Overview
+This web application was developed as part of a practical exercise to demonstrate CRUD functionality using
+PHP and MySQL.
+The project scenario involved building an anonymous feedback board for a local café. Customers can leave
+feedback, rate their experience,
+and have their comments moderated (edited or deleted) through the app. The goal was to build a clean,
+working interface using basic HTML,
+CSS, and PHP while connecting everything to a MySQL database.
+
+2. Database Schema
+The application uses a single table named `feedback`. Here's the SQL used to create it:
+CREATE DATABASE IF NOT EXISTS cafe_feedback;
+USE cafe_feedback;
+CREATE TABLE feedback (
+feedback_id INT AUTO_INCREMENT PRIMARY KEY,
+nickname VARCHAR(50) NOT NULL,
+rating INT CHECK (rating BETWEEN 1 AND 5),
+comment TEXT NOT NULL,
+date_submitted DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+3. CRUD Feature Walkthrough
+- Create - Users can submit new feedback using a form that collects nickname, rating (1-5), and a comment.
+Submitted data is stored in the database.
+- Read - All feedback is shown on the homepage (index.php) in a table format, sorted by the newest
+submissions first.
+Project Documentation - Feedback Board for a Local Business
+- Update - A feedback entry can be edited through the 'Edit' link, which loads a pre-filled form with the existing
+data.
+- Delete - Entries can be deleted by clicking the 'Delete' link. A JavaScript confirm alert ensures users don't
+delete entries by accident.
+
+4. Screenshots
+Screenshot 1: Homepage displaying all feedback entries sorted by newest date.
+Screenshot 2: Add Feedback form where users can submit comments.
+Screenshot 3: Edit Feedback form with pre-filled values.
+Screenshot 4: JavaScript confirmation popup for delete action.
+
+5. Challenges Encountered
+One of the challenges was validating input properly and ensuring that the database handled rating constraints
+(between 1-5).
+Additionally, ensuring secure and user-friendly navigation between forms and pages was tricky at first. I also
+had to debug some errors
+with data not updating due to mismatched field names. All these were solved with proper testing and using
+prepared statements to secure the code.
+
+6. Learnings / Reflections
+Through this project, I learned how CRUD operations work in real-world PHP applications. I got hands-on
+experience connecting front-end
+HTML forms with back-end PHP scripts and handling MySQL queries securely. It helped me understand how
+websites store, manage, and display data dynamically.
+Overall, this project strengthened my confidence in working with full-stack development using PHP and
+MySQL.
