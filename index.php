@@ -1,41 +1,41 @@
-<?php include('includes/db.php'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Café Feedback Board</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Feedback Board</title>
+  <link rel="stylesheet" href="css/style.css"> <!-- adjust path if needed -->
 </head>
 <body>
-  <h1>Café Feedback Board</h1>
-  <a href="feedback/create.php">➕ Add Feedback</a>
-  <table>
-    <thead>
-      <tr>
-        <th>Nickname</th>
-        <th>Rating</th>
-        <th>Comment</th>
-        <th>Date</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+  <div class="container">
+    <h1>Customer Feedback Board</h1>
+
+    <!-- Feedback Form -->
+    <form action="feedback/create.php" method="POST">
+      <input type="text" name="nickname" placeholder="Your nickname" required />
+      <select name="rating" required>
+        <option value="">Rating</option>
+        <option value="5">5 - Excellent</option>
+        <option value="4">4 - Good</option>
+        <option value="3">3 - Okay</option>
+        <option value="2">2 - Poor</option>
+        <option value="1">1 - Terrible</option>
+      </select>
+      <textarea name="comment" rows="4" placeholder="Your feedback..." required></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+
+    <!-- Feedback List -->
+    <?php
+      include 'includes/db.php';
       $result = $conn->query("SELECT * FROM feedback ORDER BY date_submitted DESC");
-      while ($row = $result->fetch_assoc()):
-      ?>
-        <tr>
-          <td><?= htmlspecialchars($row['nickname']) ?></td>
-          <td><?= $row['rating'] ?>/5</td>
-          <td><?= htmlspecialchars($row['comment']) ?></td>
-          <td><?= $row['date_submitted'] ?></td>
-          <td>
-            <a href="feedback/edit.php?id=<?= $row['feedback_id'] ?>">✏️ Edit</a> |
-            <a href="feedback/delete.php?id=<?= $row['feedback_id'] ?>" onclick="return confirm('Are you sure?')">🗑 Delete</a>
-          </td>
-        </tr>
-      <?php endwhile; ?>
-    </tbody>
-  </table>
+
+      while ($row = $result->fetch_assoc()) {
+        echo "<div class='feedback-card'>";
+        echo "<div class='nickname'>{$row['nickname']} (Rating: {$row['rating']}/5)</div>";
+        echo "<div class='date'>Submitted on: {$row['date_submitted']}</div>";
+        echo "<p>{$row['comment']}</p>";
+        echo "</div>";
+      }
+    ?>
+  </div>
 </body>
 </html>
