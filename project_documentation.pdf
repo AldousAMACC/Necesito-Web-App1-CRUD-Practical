@@ -26,17 +26,14 @@ date_submitted DATETIME DEFAULT CURRENT_TIMESTAMP
 Submitted data is stored in the database.
 - Read - All feedback is shown on the homepage (index.php) in a table format, sorted by the newest
 submissions first.
-Project Documentation - Feedback Board for a Local Business
 - Update - A feedback entry can be edited through the 'Edit' link, which loads a pre-filled form with the existing
 data.
 - Delete - Entries can be deleted by clicking the 'Delete' link. A JavaScript confirm alert ensures users don't
 delete entries by accident.
 
 4. Screenshots
-Screenshot 1: Homepage displaying all feedback entries sorted by newest date.
-Screenshot 2: Add Feedback form where users can submit comments.
-Screenshot 3: Edit Feedback form with pre-filled values.
-Screenshot 4: JavaScript confirmation popup for delete action.
+Screenshot 1: Add Feedback form where users can submit comments.
+Screenshot 2: PHP screenshot on table and contents
 
 5. Challenges Encountered
 One of the challenges was validating input properly and ensuring that the database handled rating constraints
